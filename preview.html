@@ -1,0 +1,451 @@
+<!-- ==================== index.html (Form Page) ==================== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Signature Generator</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col items-center justify-center min-h-screen p-6">
+    <h1 class="text-3xl font-bold mb-8 text-gray-800">Create a Signature</h1>
+    <div class="container mx-auto p-6 bg-white rounded-xl shadow-lg max-w-4xl w-full flex flex-col lg:flex-row gap-8">
+        <!-- Input Form -->
+        <div class="w-full lg:w-1/2 p-4">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">Signature Details</h2>
+            <form id="signatureForm" class="space-y-4">
+                <div>
+                    <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input type="text" id="fullName" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2" placeholder="Jane Doe">
+                </div>
+                <div>
+                    <label for="jobTitle" class="block text-sm font-medium text-gray-700">Job Title</label>
+                    <input type="text" id="jobTitle" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2" placeholder="Creative Director">
+                </div>
+                <div>
+                    <label for="companyName" class="block text-sm font-medium text-gray-700">Company Name</label>
+                    <input type="text" id="companyName" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2" placeholder="Awesome Inc.">
+                </div>
+                <div>
+                    <!-- New Profile Picture Uploader -->
+                    <label for="profilePictureFile" class="block text-sm font-medium text-gray-700">Profile Picture</label>
+                    <input type="file" id="profilePictureFile" class="mt-1 block w-full text-sm text-gray-500
+                        file:mr-4 file:py-2 file:px-4
+                        file:rounded-lg file:border-0
+                        file:text-sm file:font-semibold
+                        file:bg-indigo-50 file:text-indigo-700
+                        hover:file:bg-indigo-100"
+                        accept="image/*">
+                </div>
+                <div>
+                    <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                    <input type="text" id="phoneNumber" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2" placeholder="+1 (555) 123-4567">
+                </div>
+                <div>
+                    <label for="emailAddress" class="block text-sm font-medium text-gray-700">Email Address</label>
+                    <input type="email" id="emailAddress" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2" placeholder="jane.doe@awesome.com">
+                </div>
+                <div>
+                    <label for="websiteUrl" class="block text-sm font-medium text-gray-700">Website URL</label>
+                    <input type="url" id="websiteUrl" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2" placeholder="https://www.awesome.com">
+                </div>
+                
+                <!-- Customization Options -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="fontSelector" class="block text-sm font-medium text-gray-700">Select Font</label>
+                        <select id="fontSelector" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2">
+                            <option value="'Inter', sans-serif">Inter</option>
+                            <option value="'Roboto', sans-serif">Roboto</option>
+                            <option value="'Open Sans', sans-serif">Open Sans</option>
+                            <option value="'Lato', sans-serif">Lato</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="layoutSelector" class="block text-sm font-medium text-gray-700">Select Layout</label>
+                        <select id="layoutSelector" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2">
+                            <option value="stacked">Stacked</option>
+                            <option value="side-by-side">Side-by-Side</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="colorPicker" class="block text-sm font-medium text-gray-700">Accent Color</label>
+                        <input type="color" id="colorPicker" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="#4f46e5">
+                    </div>
+                    <div>
+                        <label for="fontColorPicker" class="block text-sm font-medium text-gray-700">Font Color</label>
+                        <input type="color" id="fontColorPicker" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="#333333">
+                    </div>
+                    <div>
+                        <label for="backgroundColorPicker" class="block text-sm font-medium text-gray-700">Background Color</label>
+                        <input type="color" id="backgroundColorPicker" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="#ffffff">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="backgroundImageUploader" class="block text-sm font-medium text-gray-700">Background Image</label>
+                    <input type="file" id="backgroundImageUploader" class="mt-1 block w-full text-sm text-gray-500
+                        file:mr-4 file:py-2 file:px-4
+                        file:rounded-lg file:border-0
+                        file:text-sm file:font-semibold
+                        file:bg-indigo-50 file:text-indigo-700
+                        hover:file:bg-indigo-100"
+                        accept="image/*">
+                </div>
+
+                <!-- Social Media Inputs -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-bold text-gray-800 pt-2">Social Media Links</label>
+                    <div>
+                        <label for="instagramUrl" class="block text-sm font-medium text-gray-700">Instagram URL</label>
+                        <input type="url" id="instagramUrl" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2" placeholder="https://www.instagram.com/your_username">
+                    </div>
+                    <div>
+                        <label for="facebookUrl" class="block text-sm font-medium text-gray-700">Facebook URL</label>
+                        <input type="url" id="facebookUrl" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2" placeholder="https://www.facebook.com/your_page">
+                    </div>
+                    <div>
+                        <label for="linkedinUrl" class="block text-sm font-medium text-gray-700">LinkedIn URL</label>
+                        <input type="url" id="linkedinUrl" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2" placeholder="https://www.linkedin.com/in/your_profile">
+                    </div>
+                    <div>
+                        <label for="pinterestUrl" class="block text-sm font-medium text-gray-700">Pinterest URL</label>
+                        <input type="url" id="pinterestUrl" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2" placeholder="https://www.pinterest.com/your_profile">
+                    </div>
+                </div>
+
+                <button type="button" onclick="generatePreview()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-all duration-300">
+                    Generate Preview
+                </button>
+            </form>
+            
+            <!-- New Feedback Section -->
+            <div class="mt-8 pt-8 border-t border-gray-200 space-y-4">
+                <h2 class="text-2xl font-bold text-gray-800">Feedback</h2>
+                <textarea id="feedbackText" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2" rows="4" placeholder="Share your thoughts or suggestions here..."></textarea>
+                <button type="button" onclick="submitFeedback()" class="w-full bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-all duration-300">
+                    Submit Feedback
+                </button>
+                <p id="feedbackMessage" class="text-center text-sm text-gray-600 mt-2"></p>
+            </div>
+
+            <!-- New Buy me a Coffee Section -->
+            <div class="mt-8 pt-8 border-t border-gray-200 space-y-4">
+                <a href="upi://pay?pa=8287293138@fam&pn=Creator&am=100.00&cu=INR" class="w-full text-center block bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition-colors">
+                    Buy me a Coffee! ☕
+                </a>
+            </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-4 bg-gray-100 rounded-xl">
+            <p class="text-center text-gray-500">
+                Enter your details to generate a preview.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function generatePreview() {
+            const form = document.getElementById('signatureForm');
+            const params = new URLSearchParams();
+            
+            // Get data from all input fields
+            const data = {
+                fullName: document.getElementById('fullName').value,
+                jobTitle: document.getElementById('jobTitle').value,
+                companyName: document.getElementById('companyName').value,
+                phoneNumber: document.getElementById('phoneNumber').value,
+                emailAddress: document.getElementById('emailAddress').value,
+                websiteUrl: document.getElementById('websiteUrl').value,
+                fontSelector: document.getElementById('fontSelector').value,
+                layoutSelector: document.getElementById('layoutSelector').value,
+                colorPicker: document.getElementById('colorPicker').value,
+                fontColorPicker: document.getElementById('fontColorPicker').value,
+                backgroundColorPicker: document.getElementById('backgroundColorPicker').value,
+                instagramUrl: document.getElementById('instagramUrl').value,
+                facebookUrl: document.getElementById('facebookUrl').value,
+                linkedinUrl: document.getElementById('linkedinUrl').value,
+                pinterestUrl: document.getElementById('pinterestUrl').value
+            };
+
+            for (const key in data) {
+                params.append(key, data[key]);
+            }
+            
+            // Handle the profile picture and background image files separately
+            const profilePictureFile = document.getElementById('profilePictureFile').files[0];
+            const backgroundImageFile = document.getElementById('backgroundImageUploader').files[0];
+
+            let pendingReads = 0;
+            const finishRedirect = () => {
+                if (pendingReads === 0) {
+                    window.location.href = `preview.html?${params.toString()}`;
+                }
+            };
+
+            if (profilePictureFile) {
+                pendingReads++;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    params.append('profilePictureDataUrl', e.target.result);
+                    pendingReads--;
+                    finishRedirect();
+                };
+                reader.readAsDataURL(profilePictureFile);
+            }
+
+            if (backgroundImageFile) {
+                pendingReads++;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    params.append('backgroundImageDataUrl', e.target.result);
+                    pendingReads--;
+                    finishRedirect();
+                };
+                reader.readAsDataURL(backgroundImageFile);
+            }
+
+            // If no files are being read, redirect immediately
+            if (pendingReads === 0) {
+                finishRedirect();
+            }
+        }
+
+        function submitFeedback() {
+            const feedbackText = document.getElementById('feedbackText').value;
+            const messageBox = document.getElementById('feedbackMessage');
+            if (feedbackText.trim() === '') {
+                messageBox.textContent = 'Please enter your feedback.';
+                messageBox.style.color = '#ef4444';
+            } else {
+                messageBox.textContent = 'Thank you for your feedback! It has been submitted.';
+                messageBox.style.color = '#10b981';
+                document.getElementById('feedbackText').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
+<!-- ==================== preview.html (Preview Page) ==================== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Signature Preview</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2canvas library to convert HTML to an image -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        #signaturePreview {
+            width: 500px;
+            padding: 32px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-sizing: border-box;
+            line-height: 1.5;
+            color: #333;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .signature-content h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a202c;
+            margin: 0;
+            line-height: 1.2;
+        }
+        .signature-content p {
+            font-size: 16px;
+            color: #4a5568;
+            margin: 4px 0 0;
+        }
+        .signature-content a {
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .signature-content a:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col items-center justify-center min-h-screen p-6">
+    <div class="container mx-auto p-6 bg-white rounded-xl shadow-lg max-w-4xl w-full flex flex-col lg:flex-row gap-8">
+        <!-- Signature Preview -->
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-4 bg-gray-100 rounded-xl">
+            <div id="signaturePreview" class="relative">
+                <div id="signatureHeader" class="flex items-center gap-6 mb-4">
+                    <img id="profilePicture" src="https://placehold.co/80x80/4f46e5/ffffff?text=JD" alt="Profile Picture" class="rounded-full w-20 h-20 border-2 border-indigo-200">
+                    <div class="signature-content">
+                        <h3 id="previewFullName">Jane Doe</h3>
+                        <p id="previewJobTitle" class="text-sm">Creative Director at <strong id="previewCompanyName">Awesome Inc.</strong></p>
+                    </div>
+                </div>
+                <!-- Contact information -->
+                <div class="border-t border-gray-200 pt-4 mt-4 text-sm text-gray-600 space-y-1">
+                    <p>
+                        <i class="fa-solid fa-phone mr-2"></i>
+                        <span id="previewPhoneNumber">+1 (555) 123-4567</span>
+                    </p>
+                    <p>
+                        <i class="fa-solid fa-envelope mr-2"></i>
+                        <span id="previewEmailAddress">jane.doe@awesome.com</span>
+                    </p>
+                    <p>
+                        <i class="fa-solid fa-globe mr-2"></i>
+                        <a id="previewWebsiteUrl" href="#" target="_blank" class="text-indigo-600 hover:underline">https://www.awesome.com</a>
+                    </p>
+                </div>
+                <!-- Social media links -->
+                <div id="socialLinks" class="mt-4 pt-4 border-t border-gray-200 flex space-x-4 text-lg">
+                    <a id="instagramLink" href="#" target="_blank" class="text-gray-400 hover:text-indigo-500 hidden"><i class="fab fa-instagram"></i></a>
+                    <a id="facebookLink" href="#" target="_blank" class="text-gray-400 hover:text-indigo-500 hidden"><i class="fab fa-facebook"></i></a>
+                    <a id="linkedinLink" href="#" target="_blank" class="text-gray-400 hover:text-indigo-500 hidden"><i class="fab fa-linkedin"></i></a>
+                    <a id="pinterestLink" href="#" target="_blank" class="text-gray-400 hover:text-indigo-500 hidden"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="w-full lg:w-1/2 p-4 flex flex-col justify-center items-center space-y-4">
+            <button type="button" onclick="downloadSignature()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-all duration-300">
+                Generate & Download Image
+            </button>
+            <a href="index.html" class="w-full text-center bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition-colors">
+                Go Back to Form
+            </a>
+            <p id="messageBox" class="text-center text-sm text-gray-600 mt-4"></p>
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+            // Function to get query parameters from the URL
+            function getQueryParams() {
+                const params = new URLSearchParams(window.location.search);
+                const data = {};
+                for (const [key, value] of params.entries()) {
+                    data[key] = value;
+                }
+                return data;
+            }
+
+            const data = getQueryParams();
+            
+            // Set the default image URL for profile picture
+            const defaultProfilePictureUrl = 'https://placehold.co/80x80/4f46e5/ffffff?text=JD';
+
+            const signaturePreview = document.getElementById('signaturePreview');
+            const signatureHeader = document.getElementById('signatureHeader');
+
+            // Apply styling from the query parameters
+            signaturePreview.style.fontFamily = data.fontSelector;
+            signaturePreview.style.backgroundColor = data.backgroundColorPicker;
+            
+            // Apply font color
+            signaturePreview.querySelectorAll('h3, p, strong').forEach(el => {
+                el.style.color = data.fontColorPicker;
+            });
+
+            // Set the accent color for icons and links
+            const iconElements = signaturePreview.querySelectorAll('.fa-solid, .fab');
+            iconElements.forEach(icon => {
+                icon.style.color = data.colorPicker;
+            });
+            const linkElements = signaturePreview.querySelectorAll('a');
+            linkElements.forEach(link => {
+                link.style.color = data.colorPicker;
+            });
+
+            // Apply layout
+            if (data.layoutSelector === 'side-by-side') {
+                signatureHeader.classList.remove('flex-col', 'items-start');
+                signatureHeader.classList.add('flex-row', 'items-center');
+            } else { // stacked
+                signatureHeader.classList.remove('flex-row', 'items-center');
+                signatureHeader.classList.add('flex-col', 'items-start');
+            }
+
+            // Set the background image
+            if (data.backgroundImageDataUrl) {
+                signaturePreview.style.backgroundImage = `url(${data.backgroundImageDataUrl})`;
+                signaturePreview.style.backgroundColor = 'transparent';
+            }
+
+            // Update text content
+            document.getElementById('previewFullName').textContent = data.fullName || 'Jane Doe';
+            document.getElementById('previewJobTitle').innerHTML = (data.jobTitle || 'Creative Director') + ' at <strong id="previewCompanyName">' + (data.companyName || 'Awesome Inc.') + '</strong>';
+            document.getElementById('previewPhoneNumber').textContent = data.phoneNumber || '+1 (555) 123-4567';
+            document.getElementById('previewEmailAddress').textContent = data.emailAddress || 'jane.doe@awesome.com';
+            
+            const websiteUrl = data.websiteUrl || 'https://www.awesome.com';
+            const previewWebsiteLink = document.getElementById('previewWebsiteUrl');
+            previewWebsiteLink.textContent = websiteUrl;
+            previewWebsiteLink.href = websiteUrl;
+
+            // Set the profile picture from the data URL or default
+            const profilePicture = document.getElementById('profilePicture');
+            profilePicture.src = data.profilePictureDataUrl || defaultProfilePictureUrl;
+            
+            // Update social media links and visibility
+            const socialLinks = {
+                instagram: data.instagramUrl,
+                facebook: data.facebookUrl,
+                linkedin: data.linkedinUrl,
+                pinterest: data.pinterestUrl,
+            };
+
+            for (const platform in socialLinks) {
+                const linkElement = document.getElementById(`${platform}Link`);
+                const url = socialLinks[platform];
+                if (url) {
+                    linkElement.href = url;
+                    linkElement.classList.remove('hidden');
+                } else {
+                    linkElement.classList.add('hidden');
+                }
+            }
+        };
+
+        // Function to generate and download the image
+        function downloadSignature() {
+            const signatureElement = document.getElementById('signaturePreview');
+            const messageBox = document.getElementById('messageBox');
+            messageBox.textContent = 'Generating image... Please wait.';
+
+            html2canvas(signatureElement, {
+                scale: 2,
+                useCORS: true
+            }).then(canvas => {
+                const image = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.href = image;
+                link.download = 'email-signature.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                messageBox.textContent = 'Image downloaded successfully!';
+            }).catch(error => {
+                console.error('oops, something went wrong!', error);
+                messageBox.textContent = 'Error generating image. Please try again.';
+            });
+        }
+    </script>
+</body>
+</html>
